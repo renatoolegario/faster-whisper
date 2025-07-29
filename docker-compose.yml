@@ -1,12 +1,26 @@
 version: "3.8"
 
 services:
-  whisper:
+  whisper-transcriber:
     build:
       context: .
     container_name: whisper-transcriber
     ports:
-      - "5000:5000"
+      - "5000:5000"  # Mapeia a porta 5000 do host para a porta 5000 do container (opcional, mas útil para testes diretos)
     volumes:
-      - ./app:/app
+      - ./app:/app  # Monta o diretório ./app local para o /app no container
     restart: unless-stopped
+    environment:
+      - VIRTUAL_HOST=faster-whisper.uaistack.com.br
+      - LETSENCRYPT_HOST=faster-whisper.uaistack.com.br
+      - LETSENCRYPT_EMAIL=renato_olegario@hotmail.com
+      - VIRTUAL_PORT=5000
+    expose:
+      - "5000"  # Expõe a porta 5000 para a rede interna do Docker
+    networks:
+      - nginx-proxy
+
+networks:
+  nginx-proxy:
+    external: true
+    name: ticketz-docker-acme_nginx-proxy
