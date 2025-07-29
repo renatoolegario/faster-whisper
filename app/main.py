@@ -30,7 +30,7 @@ print(f"🔥 Dispositivo: {device}")
 # Carrega o modelo Whisper Medium
 print("🔊 Carregando modelo Whisper MEDIUM...")
 try:
-    model = whisper.load_model("medium", device=device)
+    model = whisper.load_model("small", device=device)
     print("✅ Modelo MEDIUM carregado com sucesso!")
     print(f"📊 Parâmetros: 769M | Dispositivo: {device}")
 except Exception as e:
@@ -138,7 +138,7 @@ def health():
     """Endpoint para verificar status da API"""
     return jsonify({
         "status": "ok",
-        "model": "medium",
+        "model": "small",
         "device": device,
         "gpu_available": torch.cuda.is_available(),
         "version": "1.0"
