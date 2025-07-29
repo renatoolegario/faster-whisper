@@ -8,7 +8,7 @@ app = Flask(__name__)
 app.config['MAX_CONTENT_LENGTH'] = 100 * 1024 * 1024  # Limite: 100MB
 
 print("🔊 Carregando modelo Whisper...")
-model = whisper.load_model("large-v3")
+model = whisper.load_model("base")
 print("✅ Modelo carregado com sucesso!")
 
 @app.route("/transcribe", methods=["POST"])
