@@ -1,9 +1,12 @@
 from flask import Flask, request, jsonify
+from flask_cors import CORS  # ✅ Importa CORS
 import whisper
 import os
 import tempfile
 
 app = Flask(__name__)
+CORS(app)  # ✅ Habilita CORS para todas as rotas
+
 app.config['MAX_CONTENT_LENGTH'] = 100 * 1024 * 1024  # Limite: 100MB
 
 print("🔊 Carregando modelo Whisper...")
