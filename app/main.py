@@ -50,3 +50,8 @@ def transcribe():
         if audio_path and os.path.exists(audio_path):
             os.unlink(audio_path)
             print(f"🧹 Arquivo temporário removido: {audio_path}")
+
+
+# 🔥 IMPORTANTE: isso garante que o servidor Flask rode no Docker corretamente
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port=5000)
